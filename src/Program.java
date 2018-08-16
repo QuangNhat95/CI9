@@ -1,6 +1,7 @@
 public class Program {
-    public static void main(String[] agrs) {
-         GameWindow gameWindow = new GameWindow() ;
 
+    public static void main(String[] args) {
+        GameWindow gameWindow = new GameWindow();
+        gameWindow.mainLoop();
     }
 }
