@@ -1,73 +1,102 @@
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class Player {
-    int x;
-    int y;
 
-    Image image;
+    Vector2D position ;
+    Image imagePlayer;
     InputManager inputManager;
+    boolean shootL;
+    ArrayList<Bullet>bullets;
 
-    Player(int x, int y) {
+    Player(float x, float y) {
+        this.position= new Vector2D(x,y);
 
-        this.x = x;
-        this.y = y;
-
-
-        image = ImageUtil.load("images/player/MB-69/DSC_2493.png");
-
+        imagePlayer = ImageUtil.load("images/player/MB-69/player1.png");
     }
 
-    public void render(Graphics g) {
-        g.drawImage(this.image, this.x, this.y, null);
+    void render(Graphics g) {
+        g.drawImage(this.imagePlayer, (int)this.position.x, (int)this.position.y, null);
 
     }
 
     void run() {
-        if (inputManager.rightPressed) {
-            this.x += 5;
+        this.move();
+        this.shoot();
+
+    }
+
+    private void shoot() {
+        for (Bullet b1 : bullets) {
+            b1.run();
+        }
+        if (this.inputManager.xPressed&&!this.shootL){
+            Bullet bullet = new Bullet((int)this.position.x,(int)this.position.y);
+            this.bullets.add(bullet);
+            this.shootL=true;
 
         }
+        if (shootL) {
+            count++;
+            if (count > 15) {
+                shootL = false;
+                count = 0;
+            }
+
+        }
+    }
+
+    void move(){
+        Vector2D velocity = new Vector2D();
+
+        if (inputManager.rightPressed) {
+            velocity.x+=5;
+            System.out.println("right");
+        }
         if (inputManager.leftPressed) {
-            this.x -= 5;
+            velocity.x -= 5;
+            System.out.println("left");
 
         }
         if (inputManager.upPressed) {
-            this.y -= 5;
+            velocity.y -= 5;
 
         }
         if (inputManager.downPressed) {
-            this.y += 5;
+            velocity.y+= 5;
 
         }
-
+        this.position.addUp(velocity);
 
     }
-    void shootLock(ArrayList<Bullet> bullets){
 
+
+  /*void shootLock(ArrayList<Bullet> bullets) {
         for (Bullet b1 : bullets) {
             b1.run();
         }
         if (inputManager.xPressed && !shootLock) {
-            Bullet newB = new Bullet(this.x, this.y);
+            Bullet newB = new Bullet((int)this.position.x, (int)this.position.y);
             bullets.add(newB);
             shootLock = true;
         }
         if (shootLock) {
             count++;
-            if (count > 30) {
+            if (count > 15) {
                 shootLock = false;
                 count = 0;
             }
+
         }
+*/
 
 
 
-    }
+
     boolean shootLock = false;
-    boolean enemyDisable = false;
-    int count;
-    Player player;
+    int count = 0;
 }
+
 
 

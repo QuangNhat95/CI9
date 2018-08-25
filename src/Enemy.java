@@ -1,30 +1,44 @@
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Enemy {
-    int x;
-    int y;
-    Image image1;
-            //Image image2;
 
-    Enemy(int x, int y) {
+    float x;
+    float y;
+    Image image;
 
-        this.x = x;
-        this.y = y;
+    Vector2D position;
 
-
-        this.image1 = ImageUtil.load("images/player/MB-69/DSC_7393.png");
-        //this.image2 = ImageUtil.load("images/player/MB-69/DSC_7513.png");
-
-    }
-
-    public void render(Graphics g) {
-        g.drawImage(this.image1, this.x, this.y, null);
-      //  g.drawImage(this.image2, this.x, this.y, null);
+    Enemy(float x, float y) {
+        this.position = new Vector2D(x, y);
+        image = ImageUtil.load("images/enemy/bacteria/bacteria1.png");
 
 
     }
 
-    public void run() {
-        this.y += 3;
+
+    void run() {
+
+        Vector2D velocity = new Vector2D();
+
+
+        velocity.y += 2;
+        this.position.addUp(velocity);
+
+        System.out.println("down");
+
     }
+
+
+    void render(Graphics g) {
+
+
+        g.drawImage(this.image, (int)this.position.x, (int) this.position.y, null);
+
+    }
+
+
 }
+
+

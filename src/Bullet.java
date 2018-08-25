@@ -1,27 +1,27 @@
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Bullet {
-    int x;
-    int y;
-
+    float x;
+    float y;
     Image image;
+    Vector2D position;
 
-    Bullet(int x, int y) {
-
-        this.x = x;
-        this.y = y;
+    Bullet(float x, float y) {
+        this.position = new Vector2D(x, y);
 
         image = ImageUtil.load("images/bullet/player/mb69bullet1.png");
-
-    }
-
-    public void render(Graphics g) {
-        g.drawImage(this.image, this.x, this.y, null);
-
     }
 
     void run() {
-        this.y -= 10;
+        Vector2D velocity = new Vector2D();
+        velocity.y -= 10;
+        this.position.addUp(velocity);
+
+    }
+
+    void render(Graphics g) {
+        g.drawImage(this.image, (int) this.position.x, (int) this.position.y, null);
 
     }
 }

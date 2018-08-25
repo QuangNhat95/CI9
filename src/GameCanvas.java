@@ -1,107 +1,74 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class GameCanvas extends JPanel {
     Image background;
+    BufferedImage bufferedImage;
+    Graphics graphics;
     Player player;
-    Random random;
-    //InputManager inputManager;
     InputManager inputManager;
-    ArrayList<Enemy> enemies1;
-    ArrayList<Enemy2> enemies2;
-
     ArrayList<Bullet> bullets;
+    ArrayList<Enemy> enemies;
+    Random random;
+    int enemySpawnCount = 0;
 
     public GameCanvas() {
-        random = new Random();
-        inputManager = new InputManager();
-
-        enemies1 = new ArrayList<>();
-        enemies2 = new ArrayList<>();
 
         bullets = new ArrayList<>();
+        enemies = new ArrayList<>();
+        random = new Random();
 
+        inputManager = new InputManager();
         background = ImageUtil.load("images/background/background.png");
-        player = new Player(200, 600);//Setup kich thuoc player
-        player.inputManager = inputManager;//reference , point to
+        player = new Player(268, 600);
+        player.bullets = this.bullets;
+        player.inputManager = inputManager;
         bufferedImage = new BufferedImage(600, 800, BufferedImage.TYPE_INT_ARGB);
-        bufferedGraphics = bufferedImage.getGraphics();
-
-
+        graphics = bufferedImage.getGraphics();
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         g.drawImage(bufferedImage, 0, 0, null);
+
     }
-
-
-
-
-    BufferedImage bufferedImage;
-    Graphics bufferedGraphics;
-
 
     void run() {
         player.run();
-        player.shootLock(bullets);
-        for (Bullet b1 : bullets) {
-            b1.run();
+        //player.shootLock(bullets);
+        for (Bullet bs : bullets) {
+            bs.run();
         }
-
-        for (Enemy e1 : enemies1) {
-            e1.run();
+        for (Enemy es : enemies) {
+            es.run();
         }
-
-        for (Enemy2 e2 : enemies2) {
-            e2.run();
-        }
-
-        //Setup de dan dc nha deu
-
-
         enemySpawnCount++;
-        if (enemySpawnCount >= 60) {
+        if (enemySpawnCount >= 50) {
             enemySpawnCount = 0;
-           int  postX1 = random.nextInt(600);
-            int  postX2 = random.nextInt(300);
+            int postX1 = random.nextInt(600);
             Enemy enemy1 = new Enemy(postX1, 0);
-            Enemy2 enemy2 = new Enemy2(postX2, 0);
 
-            enemies1.add(enemy1);
-            enemies2.add(enemy2);
+            enemies.add(enemy1);
         }
-
-
-
     }
 
-    boolean shootLock = false;
-    boolean enemyDisable = false;
-    int count;
-    //int count1;
-    int enemySpawnCount = 0;
-
     void render() {
-        bufferedGraphics.drawImage(background, 0, 0, null);
-        // bufferedGraphics.drawImage(player, playerX, playerY, null);
+        graphics.drawImage(background, 0, 0, null);
+        for (Enemy es : enemies) {
 
-        for (Enemy e1 : enemies1) {
-            e1.render(bufferedGraphics);
+            es.render(graphics);
         }
-        for (Enemy2 e2 : enemies2) {
-            e2.render(bufferedGraphics);
-        }
-        for (Bullet b : bullets) {
-            b.render(bufferedGraphics);
-        }
-        player.render(bufferedGraphics);
+        player.render(graphics);
 
-        this.repaint();
+        for (Bullet bs : bullets) {
+            bs.render(graphics);
+        }
+
+        this.repaint();//  Son lai //Canvas repeat
+
     }
 
 
