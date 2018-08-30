@@ -31,7 +31,7 @@ public class GameCanvas extends JPanel {
 
         //inputManager = new inputs.InputManager();
 
-       // inputManager= InputManager.instance;
+        // inputManager= InputManager.instance;
 
         background = ImageUtil.load("images/background/background.png");
         player = new Player(268, 600);

@@ -2,6 +2,7 @@ package enemies;
 
 import bases.ImageUtil;
 import bases.Vector2D;
+import java.util.ArrayList;
 
 import java.awt.*;
 
@@ -10,8 +11,9 @@ public class Enemy {
     float x;
     float y;
     Image image;
+    public ArrayList<Enemy> enemiesBullets = new ArrayList<>();
 
-    Vector2D position;
+   public Vector2D position;
 
     public Enemy(float x, float y) {
         this.position = new Vector2D(x, y);

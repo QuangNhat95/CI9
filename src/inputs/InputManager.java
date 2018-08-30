@@ -8,8 +8,9 @@ public class InputManager {
     public boolean leftPressed = false;
     public boolean upPressed = false;
     public boolean downPressed = false;
-    public  boolean xPressed = false;
-public static InputManager instance= new InputManager();
+    public boolean xPressed = false;
+    public static InputManager instance = new InputManager();
+
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             rightPressed = true;
@@ -32,7 +33,7 @@ public static InputManager instance= new InputManager();
         }
     }
 
-   public  void keyReleased(KeyEvent e) {
+    public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             rightPressed = false;
 

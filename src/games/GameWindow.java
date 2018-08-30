@@ -57,7 +57,7 @@ public class GameWindow extends JFrame {
 
     public void mainLoop() {
         long lastTimeRender = 0;//Thoi gian cuoi cung
-        long currentTime=0;//Thoi gian b hien tai
+        long currentTime = 0;//Thoi gian b hien tai
         while (true) {
             currentTime = System.nanoTime();//1/60s equal 17 minisecon
             if (currentTime - lastTimeRender >= 17_000_000) {

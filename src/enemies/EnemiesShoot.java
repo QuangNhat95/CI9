@@ -1,16 +1,17 @@
 package player;
 
 import bases.FramCounter;
+import enemies.Enemy;
 import inputs.InputManager;
 
-public class PlayerShoot {
-    boolean shootL;
+public class EnemiesShoot {
+    public  boolean shootL;
     FramCounter framCounter = new FramCounter(10);
 
-    void run(Player player) {
+    void run(Enemy enemy) {
         if (InputManager.instance.xPressed && !this.shootL) {
-            Bullet bullet = new Bullet((int) player.position.x, (int) player.position.y);
-            player.bullets.add(bullet);
+            Enemy enemy1 = new Enemy((int) enemy.position.x, (int) enemy.position.y);
+            enemy.enemiesBullets.add(enemy1);
             this.shootL = true;
 
         }
