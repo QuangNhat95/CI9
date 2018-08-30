@@ -1,3 +1,5 @@
+import games.GameWindow;
+
 public class Program {
 
     public static void main(String[] args) {

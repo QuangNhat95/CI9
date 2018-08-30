@@ -1,3 +1,8 @@
+package player;
+
+import bases.ImageUtil;
+import bases.Vector2D;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -13,14 +18,14 @@ public class Bullet {
         image = ImageUtil.load("images/bullet/player/mb69bullet1.png");
     }
 
-    void run() {
+    public void run() {
         Vector2D velocity = new Vector2D();
         velocity.y -= 10;
         this.position.addUp(velocity);
 
     }
 
-    void render(Graphics g) {
+    public void render(Graphics g) {
         g.drawImage(this.image, (int) this.position.x, (int) this.position.y, null);
 
     }

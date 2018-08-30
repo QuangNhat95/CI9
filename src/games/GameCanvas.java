@@ -1,3 +1,11 @@
+package games;
+
+import bases.ImageUtil;
+import inputs.InputManager;
+import enemies.Enemy;
+import player.Bullet;
+import player.Player;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -21,11 +29,13 @@ public class GameCanvas extends JPanel {
         enemies = new ArrayList<>();
         random = new Random();
 
-        inputManager = new InputManager();
+        //inputManager = new inputs.InputManager();
+
+       // inputManager= InputManager.instance;
+
         background = ImageUtil.load("images/background/background.png");
         player = new Player(268, 600);
         player.bullets = this.bullets;
-        player.inputManager = inputManager;
         bufferedImage = new BufferedImage(600, 800, BufferedImage.TYPE_INT_ARGB);
         graphics = bufferedImage.getGraphics();
     }

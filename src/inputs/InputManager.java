@@ -1,13 +1,16 @@
+package inputs;
+
 import java.awt.event.KeyEvent;
 
 public class InputManager {
 
-    boolean rightPressed = false;
-    boolean leftPressed = false;
-    boolean upPressed = false;
-    boolean downPressed = false;
-    boolean xPressed = false;
-    void keyPressed(KeyEvent e) {
+    public boolean rightPressed = false;
+    public boolean leftPressed = false;
+    public boolean upPressed = false;
+    public boolean downPressed = false;
+    public  boolean xPressed = false;
+public static InputManager instance= new InputManager();
+    public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             rightPressed = true;
 
@@ -29,7 +32,7 @@ public class InputManager {
         }
     }
 
-    void keyReleased(KeyEvent e) {
+   public  void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             rightPressed = false;
 

@@ -1,6 +1,9 @@
+package enemies;
+
+import bases.ImageUtil;
+import bases.Vector2D;
+
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Random;
 
 public class Enemy {
 
@@ -10,7 +13,7 @@ public class Enemy {
 
     Vector2D position;
 
-    Enemy(float x, float y) {
+    public Enemy(float x, float y) {
         this.position = new Vector2D(x, y);
         image = ImageUtil.load("images/enemy/bacteria/bacteria1.png");
 
@@ -18,7 +21,7 @@ public class Enemy {
     }
 
 
-    void run() {
+    public void run() {
 
         Vector2D velocity = new Vector2D();
 
@@ -31,7 +34,7 @@ public class Enemy {
     }
 
 
-    void render(Graphics g) {
+    public void render(Graphics g) {
 
 
         g.drawImage(this.image, (int)this.position.x, (int) this.position.y, null);

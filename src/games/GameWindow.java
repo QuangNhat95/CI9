@@ -1,5 +1,8 @@
+package games;
+
+import inputs.InputManager;
+
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
@@ -24,17 +27,17 @@ public class GameWindow extends JFrame {
             @Override
             public void keyPressed(KeyEvent e) {
                 //System.out.println("keyPressed");
-                canvas.inputManager.keyPressed(e);
+                InputManager.instance.keyPressed(e);
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
                 //System.out.println("keyReleased");
-                canvas.inputManager.keyReleased(e);
+                InputManager.instance.keyReleased(e);
             }
         });
 
-//Setup GameWindow
+//Setup games.GameWindow
 
         this.setSize(600, 800);//Kich thuoc man hinh
         this.setResizable(false);  //Setup ko cho ng dung keo dan man hinh
@@ -52,7 +55,7 @@ public class GameWindow extends JFrame {
 
 //Loop for all program
 
-    void mainLoop() {
+    public void mainLoop() {
         long lastTimeRender = 0;//Thoi gian cuoi cung
         long currentTime=0;//Thoi gian b hien tai
         while (true) {
