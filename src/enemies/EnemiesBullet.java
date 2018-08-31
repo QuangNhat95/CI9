@@ -9,11 +9,13 @@ public class EnemiesBullet {
     Vector2D position;
     int count=0;
     ImageRenderer imageRenderer;
+
     EnemiesBullet(int x,int y){
         this.position = new Vector2D(x,y);
         this.imageRenderer = new  ImageRenderer("images/bullet/enemy/enemy2_bullet1.png");
     }
     public void render(Graphics g){
+
         this.imageRenderer.render(g,position);
     }
     public void run(){

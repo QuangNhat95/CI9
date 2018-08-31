@@ -12,7 +12,7 @@ public class Bullet {
     Image image;
     Vector2D position;
 
-    Bullet(float x, float y) {
+    public Bullet(float x, float y) {
         this.position = new Vector2D(x, y);
 
         image = ImageUtil.load("images/bullet/player/mb69bullet1.png");

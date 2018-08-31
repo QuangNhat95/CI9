@@ -6,11 +6,9 @@ public class FramCounter {
     public boolean expired;
 
     public FramCounter(int limit) {
-
         this.limit = limit;
         this.count = 0;
         this.expired = false;
-
     }
 
     public void run() {

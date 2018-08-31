@@ -42,7 +42,6 @@ public class Player {
     }
 
 
-    int count = 0;
 }
 
 

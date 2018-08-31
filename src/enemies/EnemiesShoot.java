@@ -7,8 +7,7 @@ import inputs.InputManager;
 public class EnemiesShoot {
     public  boolean shootL;
     FramCounter framCounter = new FramCounter(10);
-
-    void run(Enemy enemy) {
+   public void run(Enemy enemy) {
         if (InputManager.instance.xPressed && !this.shootL) {
             Enemy enemy1 = new Enemy((int) enemy.position.x, (int) enemy.position.y);
             enemy.enemiesBullets.add(enemy1);
