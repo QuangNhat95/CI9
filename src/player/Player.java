@@ -3,25 +3,23 @@ package player;
 import java.awt.*;
 import java.util.ArrayList;
 
+import bases.GameObject;
 import bases.ImageRenderer;
 import bases.Vector2D;
 
-public class Player {
-    PlayerMove playerMove;
+public class Player extends GameObject {
 
-    Vector2D position;
-    ImageRenderer imageRenderer;
-
+    private PlayerMove playerMove;
     boolean shootL;//shoot
-    public ArrayList<Bullet> bullets;//shoot
-    PlayerShoot playerShoot;
+    private PlayerShoot playerShoot;
 
-   public  Player(float x, float y) {
+    public Player(int x, int y) {
+        super(x, y);
+        this.imageRenderer = new ImageRenderer("images/player/MB-69/player1.png");
         playerMove = new PlayerMove();
         playerShoot = new PlayerShoot();
-        this.position = new Vector2D(x, y);
+        // this.position = new Vector2D(x, y);
 
-        this.imageRenderer = new ImageRenderer("images/player/MB-69/player1.png");
 
     }
 
@@ -38,7 +36,7 @@ public class Player {
 
     private void shoot() {
 
-       playerShoot.run(this);
+        playerShoot.run(this);
     }
 
 

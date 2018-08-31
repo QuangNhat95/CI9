@@ -1,5 +1,7 @@
 package enemies;
 
+import bases.GameObject;
+import bases.ImageRenderer;
 import bases.ImageUtil;
 import bases.Vector2D;
 import player.EnemiesShoot;
@@ -8,46 +10,31 @@ import java.util.ArrayList;
 
 import java.awt.*;
 
-public class Enemy {
+public class Enemy extends GameObject {
 
-    float x;
-    float y;
-    Image image;
+
     public ArrayList<Enemy> enemiesBullets = new ArrayList<>();
     EnemiesShoot enemiesShoot;
-    public Vector2D position;
 
-    public Enemy(float x, float y) {
-        this.position = new Vector2D(x, y);
-        image = ImageUtil.load("images/enemy/bacteria/bacteria1.png");
-        enemiesShoot = new EnemiesShoot();
+    public Enemy(int x, int y) {
+
+        super(x, y);
+        this.imageRenderer = new ImageRenderer("images/enemy/bacteria/bacteria1.png");
 
     }
 
 
+    @Override
     public void run() {
-
-        Vector2D velocity = new Vector2D();
-
-
-        velocity.y += 2;
-        this.position.addUp(velocity);
-
-        System.out.println("down");
-
+        super.run();
+        this.position.addUp(0, 5);
     }
 
 
-    public void render(Graphics g) {
-
-
-        g.drawImage(this.image, (int) this.position.x, (int) this.position.y, null);
-
-    }
 
     public void shoot() {
 
-        enemiesShoot.run(this);
+        enemiesShoot.shoot(this);
     }
 
 }

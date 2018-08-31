@@ -3,7 +3,7 @@ package bases;
 public class Vector2D {
 
     public float x;
-   public  float y;
+    public float y;
 
 
     public Vector2D() {
@@ -19,13 +19,14 @@ public class Vector2D {
 
         return new Vector2D(this.x + x, this.y + y);
     }
+
     Vector2D add(Vector2D other) {
 
         return this.add(other.x, other.y);
     }
 
 
-     public void addUp(float x, float y) {
+    public void addUp(float x, float y) {
         this.x += x;
         this.y += y;
     }
@@ -34,7 +35,6 @@ public class Vector2D {
 
         this.addUp(other.x, other.y);
     }
-
 
 
     void subtractBy(float x, float y) {
@@ -49,13 +49,14 @@ public class Vector2D {
     }
 
 
-    Vector2D subtract(float x, float y) {
+    public Vector2D subtract(float x, float y) {
         return new Vector2D(this.x - x, this.y - y);
 
 
     }
 
     Vector2D subtract(Vector2D other) {
+
         return this.subtract(other.x, other.y);
     }
 

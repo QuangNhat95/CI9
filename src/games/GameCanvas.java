@@ -1,5 +1,6 @@
 package games;
 
+import bases.GameObject;
 import bases.ImageUtil;
 import inputs.InputManager;
 import enemies.Enemy;
@@ -17,25 +18,19 @@ public class GameCanvas extends JPanel {
     BufferedImage bufferedImage;
     Graphics graphics;
     Player player;
-    InputManager inputManager;
-    ArrayList<Bullet> bullets;
-    ArrayList<Enemy> enemies;
+    //InputManager inputManager;
+
+
+    ArrayList<GameObject> gameObjects = new ArrayList<>();
     Random random;
     int enemySpawnCount = 0;
 
     public GameCanvas() {
-
-        bullets = new ArrayList<>();
-        enemies = new ArrayList<>();
         random = new Random();
-
-        //inputManager = new inputs.InputManager();
-
-        // inputManager= InputManager.instance;
-
         background = ImageUtil.load("images/background/background.png");
-        player = new Player(268, 600);
-        player.bullets = this.bullets;
+        player = new Player(300, 700);
+        GameObject.add(player);
+
         bufferedImage = new BufferedImage(600, 800, BufferedImage.TYPE_INT_ARGB);
         graphics = bufferedImage.getGraphics();
     }
@@ -47,35 +42,23 @@ public class GameCanvas extends JPanel {
     }
 
     void run() {
-        player.run();
-        //player.shootLock(bullets);
-        for (Bullet bs : bullets) {
-            bs.run();
-        }
-        for (Enemy es : enemies) {
-            es.run();
-        }
+        GameObject.runAll();
+
         enemySpawnCount++;
         if (enemySpawnCount >= 50) {
             enemySpawnCount = 0;
             int postX1 = random.nextInt(600);
             Enemy enemy1 = new Enemy(postX1, 0);
+            GameObject.add(enemy1);
 
-            enemies.add(enemy1);
+
         }
     }
 
     void render() {
         graphics.drawImage(background, 0, 0, null);
-        for (Enemy es : enemies) {
 
-            es.render(graphics);
-        }
-        player.render(graphics);
-
-        for (Bullet bs : bullets) {
-            bs.render(graphics);
-        }
+        GameObject.renderAll(graphics);
 
         this.repaint();//  Son lai //Canvas repeat
 
