@@ -1,6 +1,7 @@
 package inputs;
 
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 public class InputManager {
 
@@ -52,6 +53,8 @@ public class InputManager {
             xPressed = false;
         }
 
+
     }
+
 
 }

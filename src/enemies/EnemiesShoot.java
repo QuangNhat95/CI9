@@ -8,7 +8,7 @@ import inputs.InputManager;
 
 public class EnemiesShoot {
     public boolean shootL;
-    FramCounter framCounter = new FramCounter(100);
+    FramCounter framCounter = new FramCounter(50);
 
     public void shoot(Enemy enemy) {
 

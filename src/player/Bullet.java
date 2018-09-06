@@ -17,7 +17,6 @@ public class Bullet extends GameObject {
 
     }
 
-
     @Override
     public void run() {
         super.run();
