@@ -19,22 +19,16 @@ import java.awt.*;
         this.imageRenderer = new ImageRenderer("images/enemy/bacteria/bacteria1.png");
         enemiesShoot = new EnemiesShoot();
     }
-
     @Override
     public void run() {
         super.run();
         this.shoot();
         this.move();
-
     }
-
-
     public void shoot() {
-
         enemiesShoot.shoot(this);
     }
     public void move(){
-
         this.position.addUp(0, 3);
 
     }

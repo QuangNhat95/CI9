@@ -20,13 +20,11 @@ public class Blood extends GameObject {
     }
 
     public void run(){
-        this.move1();
-
+        this.move();
         super.run();
 
-
     }
-    public void move1(){
+    public void move(){
         this.position.subtract(600,600);
         this.position.addUp(2,2);
 
