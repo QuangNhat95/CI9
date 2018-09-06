@@ -8,7 +8,7 @@ public class GameObject {
     public ImageRenderer imageRenderer;
 
     private static ArrayList<GameObject> gameObjects = new ArrayList<>();
-     private static ArrayList<GameObject> newgameOject=new ArrayList<>();
+    private static ArrayList<GameObject> newgameOject=new ArrayList<>();
     public static void add(GameObject g) {
         newgameOject.add(g);
 

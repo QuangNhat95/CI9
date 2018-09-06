@@ -11,7 +11,7 @@ public class EnemiesBullet extends GameObject {
 
     public EnemiesBullet(int x,int y){
         super(x,y);
-        this.imageRenderer = new  ImageRenderer("images/bullet/enemy/enemy2_bullet1.png");
+       this.imageRenderer = new  ImageRenderer("images/bullet/enemy/enemy2_bullet1.png");
     }
 
     public void run()

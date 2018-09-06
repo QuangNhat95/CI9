@@ -14,7 +14,6 @@ public class InputManager {
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             rightPressed = true;
-
         }
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             leftPressed = true;

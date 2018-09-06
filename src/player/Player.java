@@ -10,7 +10,6 @@ import bases.Vector2D;
 public class Player extends GameObject {
 
     private PlayerMove playerMove;
-    boolean shootL;//shoot
     private PlayerShoot playerShoot;
 
     public Player(int x, int y) {
@@ -18,7 +17,6 @@ public class Player extends GameObject {
         this.imageRenderer = new ImageRenderer("images/player/MB-69/player1.png");
         playerMove = new PlayerMove();
         playerShoot = new PlayerShoot();
-        // this.position = new Vector2D(x, y);
 
 
     }

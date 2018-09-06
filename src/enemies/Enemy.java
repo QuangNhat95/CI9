@@ -12,29 +12,31 @@ import java.awt.*;
 
 public class Enemy extends GameObject {
 
-
-    public ArrayList<Enemy> enemiesBullets = new ArrayList<>();
-    EnemiesShoot enemiesShoot;
+    private  EnemiesShoot enemiesShoot;
 
     public Enemy(int x, int y) {
-
         super(x, y);
         this.imageRenderer = new ImageRenderer("images/enemy/bacteria/bacteria1.png");
+        this.enemiesShoot = new EnemiesShoot();
 
     }
-
 
     @Override
     public void run() {
         super.run();
-        this.position.addUp(0, 5);
+        this.shoot();
+        this.move();
+
     }
-
-
 
     public void shoot() {
 
         enemiesShoot.shoot(this);
+    }
+    public void move(){
+
+        this.position.addUp(0, 3);
+
     }
 
 }
