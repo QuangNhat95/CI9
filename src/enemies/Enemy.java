@@ -24,11 +24,15 @@ import java.awt.*;
         this.move();
     }
     public void shoot() {
+
         enemiesShoot.shoot(this);
     }
     public void move(){
         this.position.addUp(0, 3);
 
+    }
+    public void getHit(){
+        this.destroy();
     }
 
 }

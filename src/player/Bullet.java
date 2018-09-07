@@ -26,6 +26,8 @@ public class Bullet extends GameObject {
         Enemy enemy = GameObject.checkCollision(this.boxCollider);
         if (enemy != null) {
             System.out.println("hit");
+            enemy.getHit();
+            this.destroy();
         }
     }
 

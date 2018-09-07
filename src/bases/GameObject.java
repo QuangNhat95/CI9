@@ -10,6 +10,8 @@ import java.util.ArrayList;
 public class GameObject {
     public Vector2D position;
     public ImageRenderer imageRenderer;
+    public boolean isActive;
+
 
     private static ArrayList<GameObject> gameObjects = new ArrayList<>();
     private static ArrayList<GameObject> newgameOject = new ArrayList<>();
@@ -21,15 +23,22 @@ public class GameObject {
 
     public static void runAll() {
         for (GameObject g : gameObjects) {
-            g.run();
+            if (g.isActive) {
+                g.run();
+
+            }
         }
         gameObjects.addAll(newgameOject);
         newgameOject.clear();
+
     }
 
     public static void renderAll(Graphics g) {
         for (GameObject go : gameObjects) {
-            go.render(g);
+            if (go.isActive) {
+                go.render(g);
+            }
+
 
         }
     }
@@ -37,7 +46,7 @@ public class GameObject {
     public static Enemy checkCollision(BoxCollider boxCollider) {
         Enemy result = null;
         for (GameObject go : gameObjects) {
-            if (go.boxCollider != null) {
+            if (go.isActive&&go.boxCollider != null) {
                 if (go instanceof Enemy) {
                     if (go.boxCollider.collideWith(boxCollider)) {
                         return (Enemy) go;
@@ -60,6 +69,7 @@ public class GameObject {
         this.position = new Vector2D(x, y);
         this.imageRenderer = null; //chua xac dinh//not yet specified
         this.boxCollider = null;
+        this.isActive = true;
     }
 
     public void render(Graphics g) {
@@ -73,8 +83,15 @@ public class GameObject {
 
     }
 
+    public void destroy() {
+        this.isActive = false;
+
+    }
+
     public void run() {
         if (this.boxCollider != null) {
+            this.boxCollider.position.x = this.position.x;
+            this.boxCollider.position.y = this.position.y;
             this.boxCollider.run();
         }
 

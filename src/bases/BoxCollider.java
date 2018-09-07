@@ -39,9 +39,7 @@ public class BoxCollider extends GameObject {
                 other.left() <= this.right();
         boolean yOtherlap = this.top() <= other.bot() &&
                 other.top() <= this.bot();
-
         return xOtherlap && yOtherlap;
-
 
     }
 
