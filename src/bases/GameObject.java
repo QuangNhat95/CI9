@@ -12,7 +12,8 @@ public class GameObject {
     public ImageRenderer imageRenderer;
 
     private static ArrayList<GameObject> gameObjects = new ArrayList<>();
-    private static ArrayList<GameObject> newgameOject=new ArrayList<>();
+    private static ArrayList<GameObject> newgameOject = new ArrayList<>();
+
     public static void add(GameObject g) {
         newgameOject.add(g);
 
@@ -33,12 +34,12 @@ public class GameObject {
         }
     }
 
-     public static Enemy checkCollision(BoxCollider boxCollider){
-Enemy result =null;
-        for(GameObject go: gameObjects){
-            if(go.boxCollider !=null){
-                if(go instanceof  Enemy){
-                    if(go.boxCollider.collideWith(boxCollider)){
+    public static Enemy checkCollision(BoxCollider boxCollider) {
+        Enemy result = null;
+        for (GameObject go : gameObjects) {
+            if (go.boxCollider != null) {
+                if (go instanceof Enemy) {
+                    if (go.boxCollider.collideWith(boxCollider)) {
                         return (Enemy) go;
                     }
 
@@ -48,16 +49,17 @@ Enemy result =null;
 
         }
 
-        return  result;
-     }
- public BoxCollider boxCollider;
+        return result;
+    }
+
+    public BoxCollider boxCollider;
 
 
     public GameObject(int x, int y) {
 
         this.position = new Vector2D(x, y);
         this.imageRenderer = null; //chua xac dinh//not yet specified
-        this.boxCollider=null;
+        this.boxCollider = null;
     }
 
     public void render(Graphics g) {
@@ -65,11 +67,16 @@ Enemy result =null;
             this.imageRenderer.render(g, this.position);
 
         }
+        if (this.boxCollider != null) {
+            this.boxCollider.render(g);
+        }
 
     }
 
     public void run() {
-
+        if (this.boxCollider != null) {
+            this.boxCollider.run();
+        }
 
     }
 
