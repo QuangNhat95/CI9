@@ -1,9 +1,6 @@
 package enemies;
 
-import bases.GameObject;
-import bases.ImageRenderer;
-import bases.ImageUtil;
-import bases.Vector2D;
+import bases.*;
 import player.EnemiesShoot;
 
 import java.util.ArrayList;
@@ -18,6 +15,7 @@ import java.awt.*;
         super(x, y);
         this.imageRenderer = new ImageRenderer("images/enemy/bacteria/bacteria1.png");
         enemiesShoot = new EnemiesShoot();
+        this.boxCollider= new BoxCollider(x,y,30,30);
     }
     @Override
     public void run() {

@@ -7,24 +7,26 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class EnenmySpawner extends GameObject {
-FramCounter framCounter =new FramCounter(30);
-ArrayList<Enemy> enemies;
+    private FramCounter framCounter ;
+    ArrayList<Enemy> enemies;
     Random random;
 
-    public EnenmySpawner(int x, int y) {
+    public EnenmySpawner() {
 
-        super(x, y);
+        super(0, 0);
+        framCounter = new FramCounter(100);
         random = new Random();
         enemies = new ArrayList<>();
     }
-      public void run(){
+
+    public void run() {
         framCounter.run();
-          if (framCounter.expired) {
-              int postX1 = random.nextInt(700);
-              Enemy enemy1 = new Enemy(postX1, 0);
-              GameObject.add(enemy1);
-              framCounter.reset();
-          }
-      }
+        if (framCounter.expired) {
+            int postX1 = random.nextInt(700);
+            Enemy enemy1 = new Enemy(postX1, 0);
+            GameObject.add(enemy1);
+            framCounter.reset();
+        }
+    }
 
 }

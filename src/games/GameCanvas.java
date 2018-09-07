@@ -29,14 +29,14 @@ public class GameCanvas extends JPanel {
     public GameCanvas() {
         //random = new Random();
         //background = ImageUtil.load("images/background/background.png");
-        background = new Background(300,400);
-           GameObject.add(background);
-        enenmySpawner = new EnenmySpawner(200, 0);
-        GameObject.add(enenmySpawner);
+        background = new Background(300, 400);
+        GameObject.add(background);
+
+
+        GameObject.add(new EnenmySpawner());
 
         bloodSpawner = new BloodSpawner(600, 600);
         GameObject.add(bloodSpawner);
-
 
         player2 = new Player2(200, 600);
         GameObject.add(player2);

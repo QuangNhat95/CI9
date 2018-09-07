@@ -1,5 +1,7 @@
 package bases;
 
+import enemies.Enemy;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -31,10 +33,31 @@ public class GameObject {
         }
     }
 
+     public static Enemy checkCollision(BoxCollider boxCollider){
+Enemy result =null;
+        for(GameObject go: gameObjects){
+            if(go.boxCollider !=null){
+                if(go instanceof  Enemy){
+                    if(go.boxCollider.collideWith(boxCollider)){
+                        return (Enemy) go;
+                    }
+
+                }
+
+            }
+
+        }
+
+        return  result;
+     }
+ public BoxCollider boxCollider;
+
+
     public GameObject(int x, int y) {
 
         this.position = new Vector2D(x, y);
         this.imageRenderer = null; //chua xac dinh//not yet specified
+        this.boxCollider=null;
     }
 
     public void render(Graphics g) {
