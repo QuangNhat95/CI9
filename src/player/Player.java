@@ -42,7 +42,12 @@ public class Player extends GameObject {
     @Override
     public void getHit() {
         super.getHit();
+       this.destroy();
        this.gameOver();
+    }
+
+    public void gameOver(){
+        System.exit(0);
     }
 }
 

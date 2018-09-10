@@ -101,7 +101,7 @@ public class GameObject {
 
     }
 
-    public void destroy() {
+    public  void destroy() {
         this.isActive = false;
 
     }
@@ -114,10 +114,7 @@ public class GameObject {
         }
 
     }
-    public void gameOver(){
-        System.exit(0);
 
-    }
     public void getHit(){
 
 
