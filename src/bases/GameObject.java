@@ -115,9 +115,6 @@ public class GameObject {
 
     }
 
-    public void getHit(){
 
-
-    }
 
 }

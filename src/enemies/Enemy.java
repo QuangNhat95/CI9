@@ -34,9 +34,8 @@ import java.awt.*;
 
     }
 
-     @Override
+
      public void getHit() {
-         super.getHit();
          this.destroy();
      }
 

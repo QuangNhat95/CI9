@@ -39,9 +39,8 @@ public class Player extends GameObject {
         playerShoot.run(this);
     }
 
-    @Override
+
     public void getHit() {
-        super.getHit();
        this.destroy();
        this.gameOver();
     }

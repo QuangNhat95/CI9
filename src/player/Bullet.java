@@ -32,7 +32,6 @@ public class Bullet extends GameObject {
     }
 
     private void move() {
-
         this.position.addUp(0, -10);
 
     }
