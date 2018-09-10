@@ -1,7 +1,5 @@
 package player;
 
-import java.awt.*;
-
 import bases.BoxCollider;
 import bases.GameObject;
 import bases.ImageRenderer;
@@ -14,7 +12,7 @@ public class Player extends GameObject {
 
     public Player(int x, int y) {
         super(x, y);
-        this.imageRenderer = new ImageRenderer("images/player/MB-69/player1.png");
+        this.renderer = new ImageRenderer("images/player/MB-69/player1.png");
         playerMove = new PlayerMove();
         playerShoot = new PlayerShoot();
         this.boxCollider= new BoxCollider(x,y,64,80);

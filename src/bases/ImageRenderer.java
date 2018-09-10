@@ -3,16 +3,14 @@ package bases;
 import java.awt.*;
 import java.awt.image.ImagingOpException;
 
-public class ImageRenderer {
+public class ImageRenderer extends  Renderer{
     Image image;
-
 
     public ImageRenderer(String url) {
 
         this.image = ImageUtil.load(url);
 
     }
-
 
     public void render(Graphics g, Vector2D position) {
         int imageWidth = this.image.getWidth(null);

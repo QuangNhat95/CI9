@@ -1,18 +1,13 @@
 package bases;
 
-import enemies.Enemy;
 import player.Bullet;
-import player.Player;
 
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.BufferedReader;
 import java.util.ArrayList;
 
 public class GameObject {
     public Vector2D position;
-    public ImageRenderer imageRenderer;
+    public Renderer renderer;
     public boolean isActive;
 
 
@@ -47,16 +42,26 @@ public class GameObject {
         }
     }
 
-    public static Bullet recycle() {
+    public static Bullet recycle(int x, int y) {
+        Bullet pb = null;
         for (GameObject go : gameObjects) {
             if (!go.isActive) {
                 if (go instanceof Bullet) {
-                    return (Bullet) go;
+                    pb = (Bullet) go;
                 }
             }
 
         }
-        return null;
+        if (pb == null) {
+            pb = new Bullet(x, y);
+            GameObject.add(pb);
+        } else {
+
+            pb.isActive = true;
+            pb.position.x = x;
+            pb.position.y = y;
+        }
+        return pb;
     }
 //Generics
 
@@ -78,21 +83,20 @@ public class GameObject {
     }
 
 
-
     public BoxCollider boxCollider;
 
 
     public GameObject(int x, int y) {
 
         this.position = new Vector2D(x, y);
-        this.imageRenderer = null; //chua xac dinh//not yet specified
+        this.renderer = null; //chua xac dinh//not yet specified
         this.boxCollider = null;
         this.isActive = true;
     }
 
     public void render(Graphics g) {
-        if (this.imageRenderer != null) {
-            this.imageRenderer.render(g, this.position);
+        if (this.renderer != null) {
+            this.renderer.render(g, this.position);
 
         }
         if (this.boxCollider != null) {

@@ -3,10 +3,7 @@ package blood;
 import bases.FramCounter;
 import bases.GameObject;
 import bases.ImageRenderer;
-import bases.Vector2D;
-import enemies.Enemy;
 
-import java.awt.*;
 import java.util.Random;
 
 public class Blood extends GameObject {
@@ -15,7 +12,7 @@ public class Blood extends GameObject {
     public Blood(int x, int y){
         super(x, y);
 
-        this.imageRenderer = new ImageRenderer("images/blood cells/blood-cell1.png");
+        this.renderer = new ImageRenderer("images/blood cells/blood-cell1.png");
         random = new Random();
     }
 
