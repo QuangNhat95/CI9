@@ -27,7 +27,7 @@ public class EnemiesBullet extends GameObject {
 
 
     private void hitPlayer() {
-        Player player = GameObject.checkCollision2(this.boxCollider);
+        Player player = GameObject.checkCollision(this.boxCollider,Player.class);
         if (player != null) {
             player.getHit();
             this.destroy();

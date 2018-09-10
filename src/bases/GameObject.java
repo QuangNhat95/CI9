@@ -1,11 +1,13 @@
 package bases;
 
 import enemies.Enemy;
+import player.Bullet;
 import player.Player;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
 import java.util.ArrayList;
 
 public class GameObject {
@@ -45,13 +47,26 @@ public class GameObject {
         }
     }
 
-    public static Enemy checkCollision(BoxCollider boxCollider) {
-        Enemy result = null;
+    public static Bullet recycle() {
         for (GameObject go : gameObjects) {
-            if (go.isActive&&go.boxCollider != null) {
-                if (go instanceof Enemy) {
+            if (!go.isActive) {
+                if (go instanceof Bullet) {
+                    return (Bullet) go;
+                }
+            }
+
+        }
+        return null;
+    }
+//Generics
+
+    public static <T extends GameObject> T checkCollision(BoxCollider boxCollider, Class<T> cls) {
+        T result = null;
+        for (GameObject go : gameObjects) {
+            if (go.isActive && go.boxCollider != null) {
+                if (go.getClass().equals(cls)) {
                     if (go.boxCollider.collideWith(boxCollider)) {
-                        return  (Enemy) go;
+                        result = (T) go;
                     }
 
                 }
@@ -59,26 +74,10 @@ public class GameObject {
             }
 
         }
-
         return result;
     }
-    public static Player checkCollision2(BoxCollider boxCollider) {
-        Player result = null;
-        for (GameObject go : gameObjects) {
-            if (go.isActive&&go.boxCollider != null) {
-                if (go instanceof Player) {
-                    if (go.boxCollider.collideWith(boxCollider)) {
-                        return  (Player) go;
-                    }
 
-                }
 
-            }
-
-        }
-
-        return result;
-    }
 
     public BoxCollider boxCollider;
 
@@ -102,7 +101,7 @@ public class GameObject {
 
     }
 
-    public  void destroy() {
+    public void destroy() {
         this.isActive = false;
     }
 
@@ -115,7 +114,7 @@ public class GameObject {
 
     }
 
-    public void gameOver(){
+    public void gameOver() {
         System.exit(0);
     }
 

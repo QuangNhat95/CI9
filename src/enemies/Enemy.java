@@ -40,7 +40,7 @@ import java.awt.*;
      }
 
      private void hitPlayer() {
-         Player player = GameObject.checkCollision2(this.boxCollider);
+         Player player = GameObject.checkCollision(this.boxCollider,Player.class);
          if (player != null) {
              System.out.println("hitPlayer");
              player.getHit();

@@ -6,6 +6,7 @@ import bases.Vector2D;
 import inputs.InputManager;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class PlayerShoot {
     private boolean shootL=false;
@@ -15,9 +16,23 @@ public class PlayerShoot {
         if (InputManager.instance.xPressed && !this.shootL) {
             Vector2D vector2D = player.position.subtract(0, 50);
             System.out.println("shoot");
+              //1.Try to recycle
 
-            Bullet bullet = new Bullet((int) vector2D.x, (int) vector2D.y);
-            GameObject.add(bullet);
+            Bullet newBullet = GameObject.recycle();
+            if (newBullet ==null){
+
+                //2.if can recycle fails , creat new
+
+                newBullet = new Bullet((int) vector2D.x, (int) vector2D.y);
+                GameObject.add(newBullet);
+
+            }else{
+                newBullet.isActive=true;
+                newBullet.position.x=vector2D.x;
+                newBullet.position.y=vector2D.y;
+            }
+
+
             this.shootL = true;
         }
         if (shootL) {

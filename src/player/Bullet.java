@@ -20,10 +20,18 @@ public class Bullet extends GameObject {
         super.run();
         this.move();
         this.hitEnemy();
+        deactivateIfNeeded();
+    }
+
+    private void deactivateIfNeeded() {
+        if (this.position.y<0){
+            this.isActive=false;
+
+        }
     }
 
     private void hitEnemy() {
-        Enemy enemy = GameObject.checkCollision(this.boxCollider);
+        Enemy enemy = GameObject.checkCollision(this.boxCollider,Enemy.class);
         if (enemy != null) {
             System.out.println("hit");
             enemy.getHit();
