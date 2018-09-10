@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class PlayerShoot {
     private boolean shootL=false;
-    FramCounter framCounter = new FramCounter(15);
+    FramCounter framCounter = new FramCounter(20);
 
     void run(Player player) {
         if (InputManager.instance.xPressed && !this.shootL) {

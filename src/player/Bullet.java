@@ -18,8 +18,8 @@ public class Bullet extends GameObject {
     @Override
     public void run() {
         super.run();
-        move();
-        hitEnemy();
+        this.move();
+        this.hitEnemy();
     }
 
     private void hitEnemy() {

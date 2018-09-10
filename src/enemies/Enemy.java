@@ -2,6 +2,7 @@ package enemies;
 
 import bases.*;
 import player.EnemiesShoot;
+import player.Player;
 
 import java.util.ArrayList;
 
@@ -22,6 +23,7 @@ import java.awt.*;
         super.run();
         this.shoot();
         this.move();
+        hitPlayer();
     }
     public void shoot() {
 
@@ -31,10 +33,21 @@ import java.awt.*;
         this.position.addUp(0, 3);
 
     }
-    public void getHit(){
-        this.destroy();
-    }
 
+     @Override
+     public void getHit() {
+         super.getHit();
+         this.destroy();
+     }
+
+     private void hitPlayer() {
+         Player player = GameObject.checkCollision2(this.boxCollider);
+         if (player != null) {
+             System.out.println("hitPlayer");
+             player.getHit();
+             this.destroy();
+         }
+     }
 }
 
 

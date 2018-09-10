@@ -14,10 +14,7 @@ public class Player2 extends GameObject {
         this.imageRenderer = new ImageRenderer("images/player/MB-70/player1.png");
         //playerMove = new PlayerMove();
     }
-    public void render(Graphics g) {
-        imageRenderer.render(g, this.position);
 
-    }
     public void run() {
        // playerMove.run(position);
 

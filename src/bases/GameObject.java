@@ -1,6 +1,7 @@
 package bases;
 
 import enemies.Enemy;
+import player.Player;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -60,6 +61,23 @@ public class GameObject {
 
         return result;
     }
+    public static Player checkCollision2(BoxCollider boxCollider) {
+        Player result = null;
+        for (GameObject go : gameObjects) {
+            if (go.isActive&&go.boxCollider != null) {
+                if (go instanceof Player) {
+                    if (go.boxCollider.collideWith(boxCollider)) {
+                        return (Player) go;
+                    }
+
+                }
+
+            }
+
+        }
+
+        return result;
+    }
 
     public BoxCollider boxCollider;
 
@@ -94,6 +112,14 @@ public class GameObject {
             this.boxCollider.position.y = this.position.y;
             this.boxCollider.run();
         }
+
+    }
+    public void gameOver(){
+        System.exit(0);
+
+    }
+    public void getHit(){
+
 
     }
 

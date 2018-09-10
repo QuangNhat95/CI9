@@ -3,9 +3,11 @@ package player;
 import java.awt.*;
 import java.util.ArrayList;
 
+import bases.BoxCollider;
 import bases.GameObject;
 import bases.ImageRenderer;
 import bases.Vector2D;
+import enemies.Enemy;
 
 public class Player extends GameObject {
 
@@ -17,6 +19,7 @@ public class Player extends GameObject {
         this.imageRenderer = new ImageRenderer("images/player/MB-69/player1.png");
         playerMove = new PlayerMove();
         playerShoot = new PlayerShoot();
+        this.boxCollider= new BoxCollider(x,y,64,80);
 
 
     }
@@ -29,7 +32,6 @@ public class Player extends GameObject {
     public void run() {
         playerMove.run(position);
         this.shoot();
-
     }
 
     private void shoot() {
@@ -37,7 +39,11 @@ public class Player extends GameObject {
         playerShoot.run(this);
     }
 
-
+    @Override
+    public void getHit() {
+        super.getHit();
+       this.gameOver();
+    }
 }
 
 
