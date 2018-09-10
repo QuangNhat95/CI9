@@ -37,9 +37,9 @@ public class GameCanvas extends JPanel {
 
         bloodSpawner = new BloodSpawner(600, 600);
         GameObject.add(bloodSpawner);
-
-        player2 = new Player2(200, 600);
-        GameObject.add(player2);
+//
+//        player2 = new Player2(200, 600);
+//        GameObject.add(player2);
 
         player = new Player(300, 700);
         GameObject.add(player);

@@ -43,5 +43,9 @@ public class BoxCollider extends GameObject {
 
     }
 
-
+    @Override
+    public void render(Graphics g) {
+        super.render(g);
+        g.drawRect((int)this.left(),(int)this.top(), this.width,this.height);
+    }
 }

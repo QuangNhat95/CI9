@@ -31,6 +31,7 @@ public class GameObject {
         }
         gameObjects.addAll(newgameOject);
         newgameOject.clear();
+        System.out.println(gameObjects.size());
 
     }
 
@@ -50,7 +51,7 @@ public class GameObject {
             if (go.isActive&&go.boxCollider != null) {
                 if (go instanceof Enemy) {
                     if (go.boxCollider.collideWith(boxCollider)) {
-                        return (Enemy) go;
+                        return  (Enemy) go;
                     }
 
                 }
@@ -67,7 +68,7 @@ public class GameObject {
             if (go.isActive&&go.boxCollider != null) {
                 if (go instanceof Player) {
                     if (go.boxCollider.collideWith(boxCollider)) {
-                        return (Player) go;
+                        return  (Player) go;
                     }
 
                 }
@@ -103,7 +104,6 @@ public class GameObject {
 
     public  void destroy() {
         this.isActive = false;
-
     }
 
     public void run() {
@@ -115,6 +115,8 @@ public class GameObject {
 
     }
 
-
+    public void gameOver(){
+        System.exit(0);
+    }
 
 }
