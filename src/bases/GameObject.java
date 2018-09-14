@@ -1,5 +1,7 @@
 package bases;
 
+import enemies.EnemiesBullet;
+import enemies.Enemy;
 import player.Bullet;
 
 import java.awt.*;
@@ -63,6 +65,51 @@ public class GameObject {
         }
         return pb;
     }
+
+    public static Enemy recycleE(int x, int y) {
+        Enemy e = null;
+        for (GameObject go : gameObjects) {
+            if (!go.isActive) {
+                if (go instanceof Enemy) {
+                    e = (Enemy) go;
+                }
+            }
+
+        }
+        if (e == null) {
+            e = new Enemy(x, y);
+            GameObject.add(e);
+        } else {
+
+            e.isActive = true;
+            e.position.x = x;
+            e.position.y = y;
+        }
+        return e;
+    }
+
+    public static EnemiesBullet recycleEB(int x, int y) {
+        EnemiesBullet enemybullet = null;
+        for (GameObject go : gameObjects) {
+            if (!go.isActive) {
+                if (go instanceof EnemiesBullet) {
+                    enemybullet = (EnemiesBullet) go;
+                }
+            }
+
+        }
+        if (enemybullet == null) {
+            enemybullet = new EnemiesBullet(x, y);
+            GameObject.add(enemybullet);
+        } else {
+
+            enemybullet.isActive = true;
+            enemybullet.position.x = x;
+            enemybullet.position.y = y;
+        }
+        return enemybullet;
+    }
+
 //Generics
 
     public static <T extends GameObject> T checkCollision(BoxCollider boxCollider, Class<T> cls) {

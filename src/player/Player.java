@@ -27,6 +27,7 @@ public class Player extends GameObject {
     }
 
     private void shoot() {
+
         playerShoot.run(this);
     }
 

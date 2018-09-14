@@ -13,7 +13,7 @@ public class Animation extends Renderer {
     FramCounter framCounter;
 
     public Animation(Image... images) {
-        this(10,  false ,images);
+        this(10, false, images);
 
     }
 
@@ -32,7 +32,6 @@ public class Animation extends Renderer {
     public void render(Graphics g, Vector2D position) {
         renderCurrentImage(g, position);
         changeCurrentImage();
-
     }
 
     private void changeCurrentImage() {
@@ -42,19 +41,14 @@ public class Animation extends Renderer {
 
             if (this.imageIndex < this.images.size() - 1) {
                 this.imageIndex += 1;
-
             } else {
                 if (this.oneTime) {
-                     this.finished= true;
-
-
+                    this.finished = true;
                 } else {
                     this.imageIndex = 0;
                 }
             }
         }
-
-
     }
 
     private void renderCurrentImage(Graphics g, Vector2D position) {
