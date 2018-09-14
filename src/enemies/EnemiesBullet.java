@@ -19,6 +19,7 @@ public class EnemiesBullet extends GameObject {
         super.run();
         this.move();
         hitPlayer();
+        deactivateIfNeeded();
     }
 
 
@@ -35,5 +36,11 @@ public class EnemiesBullet extends GameObject {
     void move() {
         super.run();
         this.position.addUp(0, 5);
+    }
+    private void deactivateIfNeeded() {
+        if (this.position.y<0){
+            this.isActive=false;
+
+        }
     }
 }

@@ -18,6 +18,7 @@ public class EnemiesShoot {
             this.shootL = true;
 
             if (shootL) {
+
                 framCounter.run();
                 if (framCounter.expired) {
                     shootL = false;

@@ -8,7 +8,14 @@ public class Bullet extends GameObject {
 
     public Bullet(int x, int y) {
         super(x, y);
-        this.renderer = new ImageRenderer("images/bullet/player/mb69bullet1.png");
+        this.renderer = new Animation(
+                ImageUtil.load("images/bullet/player/mb69bullet1.png"),
+                ImageUtil.load("images/bullet/player/mb69bullet2.png"),
+                ImageUtil.load("images/bullet/player/mb69bullet3.png"),
+                ImageUtil.load("images/bullet/player/mb69bullet4.png")
+
+        );
+
           this.boxCollider= new BoxCollider(x,y,10,20);
     }
 

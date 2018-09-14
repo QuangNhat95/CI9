@@ -32,6 +32,7 @@ public class Enemy extends GameObject {
         this.shoot();
         this.move();
         hitPlayer();
+        deactivateIfNeeded();
     }
 
     public void shoot() {
@@ -61,6 +62,12 @@ public class Enemy extends GameObject {
             System.out.println("hitPlayer");
             player.getHit();
             this.destroy();
+        }
+    }
+    private void deactivateIfNeeded() {
+        if (this.position.y<0){
+            this.isActive=false;
+
         }
     }
 
