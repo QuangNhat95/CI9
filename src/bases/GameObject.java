@@ -5,6 +5,7 @@ import enemies.Enemy;
 import player.Bullet;
 
 import java.awt.*;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 public class GameObject {
@@ -44,71 +45,80 @@ public class GameObject {
         }
     }
 
-    public static Bullet recycle(int x, int y) {
-        Bullet pb = null;
+    public static <T extends  GameObject> T recycle(int x, int y, Class<T> cls) {
+        T pb = null;
         for (GameObject go : gameObjects) {
             if (!go.isActive) {
-                if (go instanceof Bullet) {
-                    pb = (Bullet) go;
+                if (go.getClass().equals(cls)) {
+                    pb = (T) go;
                 }
             }
-
         }
         if (pb == null) {
-            pb = new Bullet(x, y);
+            try {
+                try {
+                    pb = cls.getConstructor(int.class, int.class).newInstance(x, y);
+                } catch (InvocationTargetException | NoSuchMethodException e) {
+                    e.printStackTrace();
+                }
+            } catch (InstantiationException | IllegalAccessException e) {
+                e.printStackTrace();
+
+            }
+            System.out.println("add");
             GameObject.add(pb);
         } else {
-
+            System.out.println("recycle");
             pb.isActive = true;
             pb.position.x = x;
             pb.position.y = y;
         }
         return pb;
     }
+//
+//    public static Enemy recycleE(int x, int y) {
+//        Enemy e = null;
+//        for (GameObject go : gameObjects) {
+//            if (!go.isActive) {
+//                if (go instanceof Enemy) {
+//                    e = (Enemy) go;
+//                }
+//            }
+//
+//        }
+//        if (e == null) {
+//            e = new Enemy(x, y);
+//            GameObject.add(e);
+//        } else {
+//
+//            e.isActive = true;
+//            e.position.x = x;
+//            e.position.y = y;
+//        }
+//        return e;
+//    }
 
-    public static Enemy recycleE(int x, int y) {
-        Enemy e = null;
-        for (GameObject go : gameObjects) {
-            if (!go.isActive) {
-                if (go instanceof Enemy) {
-                    e = (Enemy) go;
-                }
-            }
-
-        }
-        if (e == null) {
-            e = new Enemy(x, y);
-            GameObject.add(e);
-        } else {
-
-            e.isActive = true;
-            e.position.x = x;
-            e.position.y = y;
-        }
-        return e;
-    }
-
-    public static EnemiesBullet recycleEB(int x, int y) {
-        EnemiesBullet enemybullet = null;
-        for (GameObject go : gameObjects) {
-            if (!go.isActive) {
-                if (go instanceof EnemiesBullet) {
-                    enemybullet = (EnemiesBullet) go;
-                }
-            }
-
-        }
-        if (enemybullet == null) {
-            enemybullet = new EnemiesBullet(x, y);
-            GameObject.add(enemybullet);
-        } else {
-
-            enemybullet.isActive = true;
-            enemybullet.position.x = x;
-            enemybullet.position.y = y;
-        }
-        return enemybullet;
-    }
+//    public static EnemiesBullet recycleEB(int x, int y) {
+//        EnemiesBullet eb = null;
+//        for (GameObject go : gameObjects) {
+//            if (!go.isActive) {
+//                if (go instanceof EnemiesBullet) {
+//                    eb = (EnemiesBullet) go;
+//                }
+//            }
+//
+//        }
+//        if (eb == null) {
+//            eb = new EnemiesBullet(x, y);
+//            GameObject.add(eb);
+//        } else {
+//
+//            eb.isActive = true;
+//            eb.position.x = x;
+//            eb.position.y = y;
+//        }
+//        return eb;
+//    }
 
 //Generics
 
@@ -132,6 +142,10 @@ public class GameObject {
 
     public BoxCollider boxCollider;
 
+    public GameObject() {
+
+        this(0, 0);
+    }
 
     public GameObject(int x, int y) {
 
@@ -166,6 +180,7 @@ public class GameObject {
     }
 
     public void gameOver() {
+
         System.exit(0);
     }
 

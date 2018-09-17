@@ -4,7 +4,6 @@ import bases.FramCounter;
 import bases.GameObject;
 import enemies.EnemiesBullet;
 import enemies.Enemy;
-import inputs.InputManager;
 
 public class EnemiesShoot {
     public boolean shootL;
@@ -13,18 +12,15 @@ public class EnemiesShoot {
     public void shoot(Enemy enemy) {
 
         if ( !this.shootL) {
-           EnemiesBullet enemy1 = new EnemiesBullet((int) enemy.position.x, (int) enemy.position.y);
-            GameObject.add(enemy1);
-            this.shootL = true;
+           EnemiesBullet enemybullet = GameObject.recycle((int) enemy.position.x, (int) enemy.position.y,EnemiesBullet.class);
+           this.shootL = true;
+        }
+        if (shootL) {
+            framCounter.run();
+            if (framCounter.expired) {
+                shootL = false;
+                framCounter.reset();
 
-            if (shootL) {
-
-                framCounter.run();
-                if (framCounter.expired) {
-                    shootL = false;
-                    framCounter.reset();
-
-                }
             }
         }
     }

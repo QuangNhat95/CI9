@@ -1,23 +1,26 @@
 package player;
 
 import bases.Vector2D;
+import games.Setting;
 import inputs.InputManager;
 
 public class PlayerMove {
-    Vector2D position;
-    Player player;
 
+    public  Vector2D velocity;
 
+    public PlayerMove(){
+        velocity = new Vector2D();
+
+    }
     void run(Vector2D position) {
-        Vector2D velocity = new Vector2D();
+        this.velocity.x = 0;
+        this.velocity.y = 0;
 
         if (InputManager.instance.rightPressed) {
             velocity.x += 5;
-            System.out.println("right");
         }
         if (InputManager.instance.leftPressed) {
             velocity.x -= 5;
-            System.out.println("left");
 
         }
         if (InputManager.instance.upPressed) {
@@ -28,7 +31,12 @@ public class PlayerMove {
             velocity.y += 5;
 
         }
+
         position.addUp(velocity);
+        if(position.x<0) position.x=0;
+
+        if(position.x > Setting.SCREEN_WIDTH) position.x=Setting.SCREEN_WIDTH;
     }
+
 
 }

@@ -4,7 +4,10 @@ import bases.*;
 import enemies.Enemy;
 
 public class Bullet extends GameObject {
+    public Bullet() {
+        this(0, 0);
 
+    }
 
     public Bullet(int x, int y) {
         super(x, y);
@@ -16,7 +19,7 @@ public class Bullet extends GameObject {
 
         );
 
-          this.boxCollider= new BoxCollider(x,y,10,20);
+        this.boxCollider = new BoxCollider(x, y, 10, 20);
     }
 
     @Override
@@ -28,14 +31,14 @@ public class Bullet extends GameObject {
     }
 
     private void deactivateIfNeeded() {
-        if (this.position.y<0){
-            this.isActive=false;
+        if (this.position.y < 0) {
+            this.isActive = false;
 
         }
     }
 
     private void hitEnemy() {
-        Enemy enemy = GameObject.checkCollision(this.boxCollider,Enemy.class);
+        Enemy enemy = GameObject.checkCollision(this.boxCollider, Enemy.class);
         if (enemy != null) {
             System.out.println("hit");
             enemy.getHit();
